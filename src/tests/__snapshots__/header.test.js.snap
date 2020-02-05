@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header correctly 1`] = `
+<header>
+  <h1
+    className="logo"
+  >
+    Wolt
+  </h1>
+  <div
+    className="searchBar"
+  >
+    <input
+      placeholder="search with street address"
+      type="text"
+    />
+  </div>
+</header>
+`;

@@ -109,11 +109,6 @@ class Restaurants extends React.Component {
   }
 
 }
-// {this.state.res.restaurants.map(function (restaurant, idx) {
-//   return (
-//     <li className="list" key={idx}>{restaurant.name} <img src={restaurant.image}></img></li>
-//     )
-// })}
 
 
 export { Restaurants as default }
