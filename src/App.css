@@ -11,27 +11,16 @@ html{
 /* Header */
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
 
 }
 
 .logo{
   font-size: 3rem;
   font-style: italic;
-  margin-left:100px;
+  /* margin-left:100px; */
 }
 
-.searchBar input{
-border-radius: 10px;
-padding: 10px;
-margin: 20px;
-flex-grow: 1;
-border-color: black;
-font-family: serif;
-margin-right: 100px;
-}
 
 /* Container */
 .container {
@@ -55,12 +44,12 @@ margin-right: 100px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 36px;
   margin: 70px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 5px;
-  
+  font-family: 'Times New Roman', Times, serif;
 }
 .button:hover{
   background-color:#87b6c4;
@@ -69,6 +58,7 @@ margin-right: 100px;
 
 .card {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   overflow: hidden;
@@ -99,4 +89,45 @@ margin-right: 100px;
 p.MuiTypography-root{
   word-break: break-all;
   font-weight: 500;
+}
+
+/* Error message */
+.error-message{
+  text-align: center;
+  color: red;
+  font-size:50px;
+}
+
+@media only screen and (max-width: 768px) {
+ header .logo{
+   font-size: 1.5rem;
+ }
+ .container{
+   max-width: 100%;
+   cursor: text;
+ }
+ .error-message{
+ font-size: 10px;
+}
+.button{
+  font-size: 16px;
+  padding: 10px 30px;
+  margin:10px 2px;
+}
+.card{
+  flex-direction: column;
+}
+.card-content{
+  width: auto;
+  height: auto;
+}
+.media{
+  height: 150px;
+  width: 215px;
+}
+.MuiCard-root{
+  margin:10px;
+  padding: 5px;;
+}
+ 
 }

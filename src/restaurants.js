@@ -11,13 +11,10 @@ class Restaurants extends React.Component {
 
     this.state = {
       res: {
-        restaurants: [
-          {
-            name: ""
-          }
-        ]
+        restaurants: []
       },
-      order: 1
+      order: 1,
+      resultStatus: "Loading..."
     };
   }
   componentDidMount() {
@@ -28,9 +25,15 @@ class Restaurants extends React.Component {
       .then(jsonResponse => {
         this.setState({ res: jsonResponse });
         console.log(this.state.res);
+        this.setState({ resultStatus: "" });
       })
       .catch(err => {
+        this.setState({ res: { restaurants: [] } });
         console.log(err);
+        this.setState({
+          resultStatus:
+            "Failed to fetch the restaurants. Please check your Internet connection and try again."
+        });
       });
   }
 
@@ -65,45 +68,51 @@ class Restaurants extends React.Component {
   render() {
     return (
       <div>
-        <div className="wrapper">
-          <button className="button" onClick={this.sortRestaurants}>
-            Sort restaurants{" "}
-          </button>
-        </div>
-        <div className="card">
-          {this.state.res.restaurants.map(function(restaurant, idx) {
-            return (
-              <Card key={idx}>
-                <CardContent className="card-content">
-                  <img
-                    src={restaurant.image}
-                    className="media"
-                    alt="restaurant_image"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {restaurant.name}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      {restaurant.description}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="h6"
-                    >
-                      {restaurant.city}
-                    </Typography>
-                  </CardContent>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
+        {this.state.resultStatus ? (
+          <p className="error-message">{this.state.resultStatus}</p>
+        ) : (
+          <div>
+            <div className="wrapper">
+              <button className="button" onClick={this.sortRestaurants}>
+                Sort restaurants
+              </button>
+            </div>
+            <div className="card">
+              {this.state.res.restaurants.map(function(restaurant, idx) {
+                return (
+                  <Card key={idx}>
+                    <CardContent className="card-content">
+                      <img
+                        src={restaurant.image}
+                        className="media"
+                        alt="restaurant_image"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {restaurant.name}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          component="p"
+                        >
+                          {restaurant.description}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          component="h6"
+                        >
+                          {restaurant.city}
+                        </Typography>
+                      </CardContent>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
